@@ -26,9 +26,6 @@ jobs:
               "description": "Job running",
               "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }'
-        - uses: actions/checkout@v3
-          with:
-            ref: ${{ github.event.pull_request.head.sha }}
             
         - run: |
             echo "SHA github.sha: ${{ github.sha }}"
