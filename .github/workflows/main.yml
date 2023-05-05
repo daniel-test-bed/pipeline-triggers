@@ -7,7 +7,7 @@ jobs:
   mustpass:
       # This job only runs for pull request comments
       name: Job Must Pass
-      if: ${{ github.event.issue.pull_request && github.event.comment.body == var.PIPELINE_TRIGGER }}
+      if: ${{ github.event.issue.pull_request && github.event.comment.body == env.PIPELINE_TRIGGER }}
       runs-on: ubuntu-latest
       steps:
         - run: echo "${{ github.event.comment.body }}"
