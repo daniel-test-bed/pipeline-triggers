@@ -15,5 +15,7 @@ jobs:
           with:
             ref: ${{ github.event.pull_request.head.sha }}
             
-        - run: echo "${{ github.event.comment.body }}"
+        - run: |
+            echo "${{ github.event.comment.body }}"
+            ls
 
