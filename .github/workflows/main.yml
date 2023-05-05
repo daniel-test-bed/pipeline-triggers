@@ -35,6 +35,7 @@ jobs:
             echo "Author Assosiation: ${{ github.event.comment.author_association }}"
             echo '${{ toJson(github.event) }}'
             env
+            echo '${{ toJson(github.event.client_payload) }}'
            
         - name: Update check status
           if: ${{ success() }}
