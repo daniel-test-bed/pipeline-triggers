@@ -32,7 +32,7 @@ jobs:
             echo "SHA GITHUB_SHA: ${GITHUB_SHA}"
             echo "SHA github.event.pull_request.head.sha: ${{ github.event.pull_request.head.sha }}"
             echo "SHA github.event.comment.commit_id: ${{ github.event.comment.commit_id }}"
-            echo '${{ toJson(github.event.pull_request) }}'
+            echo '${{ toJson(github.event) }}'
            
         - name: Update check status
           if: ${{ success() }}
