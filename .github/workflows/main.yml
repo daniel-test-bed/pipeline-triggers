@@ -11,6 +11,5 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - run: |
-            echo A comment on PR $NUMBER
-          env:
-            NUMBER: ${{ github.event.issue.comment }}
+            echo "A comment Message: \n${{ github.event.issue }}"
+
