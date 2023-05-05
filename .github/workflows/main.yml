@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "${SECRET}"
+          echo "${PIPELINE_TRIGGER}"
     env:
-       SECRET: ${{ secrets.SECRET }}
+       PIPELINE_TRIGGER: ${{ vars.PIPELINE_TRIGGER }}
   mustpass:
       # This job only runs for pull request comments
       name: Job Must Pass
