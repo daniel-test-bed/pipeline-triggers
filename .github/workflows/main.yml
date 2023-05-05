@@ -11,21 +11,6 @@ jobs:
       runs-on: ubuntu-latest
       if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run pipeline' && github.event.comment.author_association=='CONTRIBUTOR' }}
       steps:
-        - name: Update check status
-          # set the merge commit status check
-          # using GitHub REST API
-          # see https://docs.github.com/en/rest/reference/repos#create-a-commit-status
-          run: |
-            curl --request POST \
-            --url https://api.github.com/repos/${{ github.repository }}/statuses/454126c0560f2f185dd0dc8bf2f7f9f6d7179a38 \
-            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            --header 'content-type: application/json' \
-            --data '{
-              "context": "CI/Job Must Pass",
-              "state": "pending",
-              "description": "Job running",
-              "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }'
         - name: Get Latest Commit ID
           id: commit_id
           run: |
@@ -36,6 +21,22 @@ jobs:
             echo "::set-output name=commit_id::$commit_id"
         - name: Print Latest Commit ID
           run: echo "Latest commit ID is ${{ steps.commit_id.outputs.commit_id }}"
+        - name: Update check status
+          # set the merge commit status check
+          # using GitHub REST API
+          # see https://docs.github.com/en/rest/reference/repos#create-a-commit-status
+          run: |
+            curl --request POST \
+            --url https://api.github.com/repos/${{ github.repository }}/statuses/${{steps.commit_id.outputs.commit_id }} \
+            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            --header 'content-type: application/json' \
+            --data '{
+              "context": "CI/Job Must Pass",
+              "state": "pending",
+              "description": "Job running",
+              "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }'
+        
         - run: |
             echo "SHA github.sha: ${{ github.sha }}"
             echo "SHA GITHUB_SHA: ${GITHUB_SHA}"
@@ -53,7 +54,7 @@ jobs:
           # see https://docs.github.com/en/rest/reference/repos#create-a-commit-status
           run: |
             curl --request POST \
-            --url https://api.github.com/repos/${{ github.repository }}/statuses/454126c0560f2f185dd0dc8bf2f7f9f6d7179a38 \
+            --url https://api.github.com/repos/${{ github.repository }}/statuses/${{steps.commit_id.outputs.commit_id }} \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             --header 'content-type: application/json' \
             --data '{
