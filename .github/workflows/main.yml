@@ -11,19 +11,4 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - run: echo "${{ github.event.comment.body }}"
-        - name: Add commit status
-          uses: actions/github-script@v4
-          with:
-            script: |
-              const github = require('@actions/github');
-              const octokit = new github.GitHub(process.env.GITHUB_TOKEN);
-              const context = github.context;
 
-              octokit.repos.createCommitStatus({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                sha: context.sha,
-                state: 'success',
-                target_url: '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}',
-                description: 'Must Pass'
-              });
