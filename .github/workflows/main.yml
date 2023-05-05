@@ -5,6 +5,12 @@ on:
      - edited
 
 jobs:
+  first:
+    name: debug
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo ${{ vars.PIPELINE_TRIGGER }} 
   mustpass:
       # This job only runs for pull request comments
       name: Job Must Pass
