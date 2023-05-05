@@ -3,7 +3,7 @@ on:
     types:
      - created
      - edited
-    
+jobs:    
   mustpass:
       # This job only runs for pull request comments
       name: Job Must Pass
