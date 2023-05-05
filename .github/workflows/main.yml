@@ -34,6 +34,7 @@ jobs:
             echo "SHA github.event.comment.commit_id: ${{ github.event.comment.commit_id }}"
             echo "Author Assosiation: ${{ github.event.comment.author_association }}"
             echo '${{ toJson(github.event) }}'
+            env
            
         - name: Update check status
           if: ${{ success() }}
