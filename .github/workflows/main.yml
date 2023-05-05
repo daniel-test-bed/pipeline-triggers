@@ -26,7 +26,15 @@ jobs:
               "description": "Job running",
               "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }'
-            
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: Get Latest Commit ID
+          id: commit_id
+          run: |
+            commit_id=$(curl -s "https://api.github.com/repos/${{ github.repository }}/commits/${{ github.event.issue.pull_request.head.sha }}" | jq -r '.sha')
+            echo "::set-output name=commit_id::$commit_id"
+        - name: Use Latest Commit ID
+          run: echo "Latest Commit ID is ${{ steps.commit_id.outputs.commit_id }}"
         - run: |
             echo "SHA github.sha: ${{ github.sha }}"
             echo "SHA GITHUB_SHA: ${GITHUB_SHA}"
