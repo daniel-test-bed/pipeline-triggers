@@ -30,9 +30,9 @@ jobs:
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             --header 'content-type: application/json' \
             --data '{
-              "context": "Job Must Pass",
+              "context": "CI",
               "state": "success",
-              "description": "Job Must Pass",
+              "description": "Job Passed",
               "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }'
 
