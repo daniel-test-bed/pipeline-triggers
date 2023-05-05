@@ -26,15 +26,16 @@ jobs:
               "description": "Job running",
               "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }'
-        - name: Checkout code
-          uses: actions/checkout@v2
         - name: Get Latest Commit ID
           id: commit_id
           run: |
-            commit_id=$(curl -s "https://api.github.com/repos/daniel-test-bed/pipeline-triggers/commits/" | jq -r '.sha')
-            echo "COMMIT_ID=$commit_id" >> $GITHUB_ENV
-        - name: Use Latest Commit ID
-          run: echo "Latest Commit ID is ${{ env.COMMIT_ID }}"
+            pull_request_url=$(jq -r ".issue.pull_request.url" "$GITHUB_EVENT_PATH")
+            commit_id=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              "$pull_request_url" \
+              | jq -r ".head.sha")
+            echo "::set-output name=commit_id::$commit_id"
+        - name: Print Latest Commit ID
+          run: echo "Latest commit ID is ${{ steps.commit_id.outputs.commit_id }}"
         - run: |
             echo "SHA github.sha: ${{ github.sha }}"
             echo "SHA GITHUB_SHA: ${GITHUB_SHA}"
