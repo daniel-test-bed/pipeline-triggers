@@ -7,9 +7,9 @@ jobs:
   pr_commented:
       # This job only runs for pull request comments
       name: PR comment
-      if: ${{ github.event.comment.body }}
+      if: ${{ github.event.issue.pull_request }}
       runs-on: ubuntu-latest
       steps:
         - run: |
-            echo "A comment Message: \n${{ github.event.issue }}"
+            echo "A comment Message: ${{ github.comment.body }}"
 
