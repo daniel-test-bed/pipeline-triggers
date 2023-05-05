@@ -12,7 +12,7 @@ jobs:
       - run: |
           echo $PIPELINE_TRIGGER
     env:
-      PIPELINE_TRIGGER: ${{ vars.PIPELINE_TRIGGER }} 
+      PIPELINE_TRIGGER: ${{ secrets.SECRET }} 
   mustpass:
       # This job only runs for pull request comments
       name: Job Must Pass
