@@ -9,7 +9,7 @@ jobs:
       # This job only runs for pull request comments
       name: Job Must Pass
       runs-on: ubuntu-latest
-      if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run pipeline' }}
+      if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run pipeline' && github.event.comment.author_association=='CONTRIBUTOR'}
       steps:
         - name: Update check status
           # set the merge commit status check
@@ -32,6 +32,7 @@ jobs:
             echo "SHA GITHUB_SHA: ${GITHUB_SHA}"
             echo "SHA github.event.pull_request.head.sha: ${{ github.event.pull_request.head.sha }}"
             echo "SHA github.event.comment.commit_id: ${{ github.event.comment.commit_id }}"
+            echo "Author Assosiation: ${{ github.event.comment.author_association }}"
             echo '${{ toJson(github.event) }}'
            
         - name: Update check status
