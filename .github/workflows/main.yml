@@ -4,9 +4,9 @@ on:
      - created
      - edited
 jobs:
-  pr_commented:
+  mustpass:
       # This job only runs for pull request comments
-      name: PR comment
+      name: Job Must Pass
       if: ${{ github.event.issue.pull_request && github.event.comment.body == var.PIPELINE_TRIGGER }}
       runs-on: ubuntu-latest
       steps:
