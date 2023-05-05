@@ -22,7 +22,7 @@ jobs:
         - name: Print Latest Commit ID
           run: echo "Latest commit ID is ${{ env.COMMIT_ID }}"
         - name: Set commit status pending
-          uses: actions/github-script@v6
+          uses: actions/github-script@v5
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             script: |
@@ -62,7 +62,7 @@ jobs:
             echo '${{ toJson(github.event.client_payload) }}'
   
         - name: Set commit status complete
-          uses: actions/github-script@v6
+          uses: actions/github-script@v5
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             script: |
