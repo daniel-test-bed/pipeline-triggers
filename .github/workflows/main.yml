@@ -18,7 +18,7 @@ jobs:
         - run: |
             echo "${{ github.event.comment.body }}"
             ls
-        - name: Staging Tests ✅
+        - name: Update check status
           if: ${{ success() }}
           # set the merge commit status check
           # using GitHub REST API
