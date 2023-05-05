@@ -17,7 +17,7 @@ jobs:
           # see https://docs.github.com/en/rest/reference/repos#create-a-commit-status
           run: |
             curl --request POST \
-            --url https://api.github.com/repos/${{ github.repository }}/statuses/$GITHUB_SHA \
+            --url https://api.github.com/repos/${{ github.repository }}/statuses/454126c0560f2f185dd0dc8bf2f7f9f6d7179a38 \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             --header 'content-type: application/json' \
             --data '{
@@ -39,7 +39,7 @@ jobs:
           # see https://docs.github.com/en/rest/reference/repos#create-a-commit-status
           run: |
             curl --request POST \
-            --url https://api.github.com/repos/${{ github.repository }}/statuses/$GITHUB_SHA \
+            --url https://api.github.com/repos/${{ github.repository }}/statuses/454126c0560f2f185dd0dc8bf2f7f9f6d7179a38 \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             --header 'content-type: application/json' \
             --data '{
