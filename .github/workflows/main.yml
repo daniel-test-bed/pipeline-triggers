@@ -2,16 +2,12 @@ name: CI
 on:
   issue_comment:
     types:
-     - created
-jobs:    
+      - created
+jobs:
   mustpass:
-      # This job only runs for pull request comments
-      name: Job Must Pass
-      runs-on: ubuntu-latest
-      if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run pipeline' && github.event.comment.author_association=='CONTRIBUTOR' }}
-      steps:
-        - name: Get Latest Commit ID
-          uses: daniel-test-bed/workflows/.github/workflows/wf-wrapper.yml@main
-          with: 
-            status-name: "CI/Job Must Pass"
-
+    # This job only runs for pull request comments
+    name: Job Must Pass
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run pipeline' && github.event.comment.author_association=='CONTRIBUTOR' }}
+    uses: daniel-test-bed/workflows/.github/workflows/wf-wrapper.yml@main
+    with:
+      status-name: "CI/Job Must Pass"
