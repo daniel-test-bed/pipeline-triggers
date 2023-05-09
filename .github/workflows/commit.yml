@@ -1,0 +1,10 @@
+name: Commit Actions
+on:
+  push:
+    branches:
+      - main
+jobs:
+  remove-labels:
+    uses: daniel-test-bed/workflows/.github/workflows/remove-labels.yml@main
+    with:
+      labels: ok-to-test
