@@ -9,7 +9,6 @@ jobs:
     name: Job Must Pass
     if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run pipeline' && github.event.comment.author_association=='CONTRIBUTOR' }}
     uses: daniel-test-bed/workflows/.github/workflows/wf-wrapper.yml@main
-    secrets: inherit
     with:
       status-name: "CI/Job Must Pass"
       name: ${{ github.event.comment.user.login }}
