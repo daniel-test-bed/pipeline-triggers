@@ -16,7 +16,7 @@ jobs:
   notify_contributor_and_label_required:
     name: Notify Contributor and Label Required
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run pipeline' && github.event.comment.author_association != 'CONTRIBUTOR' && !contains(github.event.issue.labels.*.name, 'ok-to-test') }}
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run pipeline' && (github.event.comment.author_association != 'CONTRIBUTOR' || !contains(github.event.issue.labels.*.name, 'ok-to-test')) }}
     steps:
       - name: Post Comment
         uses: peter-evans/create-or-update-comment@v1
