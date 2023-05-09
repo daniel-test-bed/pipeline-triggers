@@ -1,8 +1,7 @@
 name: Commit Actions
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [synchronize]
 jobs:
   remove-labels:
     uses: daniel-test-bed/workflows/.github/workflows/remove-labels.yml@main
