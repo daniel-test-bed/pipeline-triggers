@@ -12,4 +12,4 @@ jobs:
     secrets: inherit
     with:
       status-name: "CI/Job Must Pass"
-      name: ${{ github.event.comment.author }}
+      name: ${{ github.event.comment.user.login }}
