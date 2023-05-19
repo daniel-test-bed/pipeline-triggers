@@ -7,7 +7,7 @@ jobs:
   mustpass:
     # This job only runs for pull request comments
     name: Job Must Pass
-    uses: daniel-test-bed/workflows/.github/workflows/wf-wrapper.yml
+    uses: daniel-test-bed/workflows/.github/workflows/wf-wrapper.yml@main
     secrets: inherit
     with:
       status-name: "CI/Job Must Pass"
